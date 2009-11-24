@@ -56,22 +56,26 @@ xterm*|rxvt*)
     ;;
 esac
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
 fi
 
-alias ll='ls -l'
-alias ack=ack-grep
-
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+alias ll='ls -l'
+alias ack=ack-grep
+alias ec2="ssh -l root -i $HOME/.ssh/ec2.pem"
+alias watch-sicp='mplayer -af equalizer=-12:-12:-12:0:0:0:12:12:-6:-12'
+alias backup='sudo rsync -vaxE --delete --ignore-errors'
+alias tun='ssh -f -N '
+alias dotfiles="git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME"
+
+# Make SSH port forwarding / tunneling a little friendlier
+complete -F _ssh tun
 
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper_bashrc
@@ -138,3 +142,6 @@ export PIP_RESPECT_VIRTUALENV=true
 if [ -f ~/.bash_evb ]; then
     . ~/.bash_evb
 fi
+
+# Fix Java toolkit issues with xmonad
+export AWT_TOOLKIT=MToolkit
