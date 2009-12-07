@@ -146,6 +146,9 @@
 ;; align text with C-x \
 (global-set-key (kbd "C-x \\") 'align-regexp)
 
+;; save sessions between restarts (hallelujah)
+(desktop-save-mode 1)
+
 ;; modes -------------------------------------------------------------
 
 ;; python-mode.el -- https://launchpad.net/python-mode
