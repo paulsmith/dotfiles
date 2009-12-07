@@ -137,6 +137,7 @@ export GOARCH=amd64
 # pip
 export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
+export PIP_LOG_FILE=/tmp/pip-log.txt
 
 # EveryBlock-specific Bash functions and aliases
 if [ -f ~/.bash_evb ]; then
