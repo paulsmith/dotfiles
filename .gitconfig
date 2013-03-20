@@ -1,1 +1,16 @@
-/home/paul/Dropbox/dotfiles/dot-gitconfig
+[user]
+	name = Paul Smith
+	email = paulsmith@pobox.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = auto
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+    br = branch
+[pager]
+	status = true

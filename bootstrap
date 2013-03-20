@@ -1,0 +1,98 @@
+#!/bin/bash
+# Modified from https://github.com/holman/dotfiles/blob/master/script/bootstrap
+
+set -e
+
+info () {
+    printf "  [\033[00;34m..\033[00m] $1\n"
+}
+
+user () {
+    printf "\r  [\033[00;33m?\033[00m] $1 "
+}
+
+ok () {
+    printf "\r\033[2K  [\033[00;32mOK\33[00m] $1\n"
+}
+
+fail () {
+    printf "\r\033[2K  [\033[00;32mFAIL\33[00m] $1\n"
+    echo
+    exit
+}
+
+symlink () {
+    ln -s $1 $2
+    ok "linked $1 to $2"
+}
+
+install_dotfiles () {
+    info "installing dotfiles"
+
+    overwrite_all=false
+    backup_all=false
+    skip_all=false
+
+    for src in `find $(pwd) -maxdepth 1 -name .\*`; do
+
+        if [ `basename $src` == "." ] || [ `basename $src` == ".git" ] || [ "$src" == `pwd` ]; then
+            continue
+        fi
+
+        dest="$HOME/`basename $src`"
+
+        if [ -f $dest ] || [ -d $dest ]; then
+            overwrite=false
+            backup=false
+            skip=false
+
+            if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]; then
+                user "file exists: `basename $src`, [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+                read -n 1 action
+
+                case "$action" in
+                    o)
+                        overwrite=true
+                        ;;
+                    O)
+                        overwrite_all=true
+                        ;;
+                    b)
+                        backup=true
+                        ;;
+                    B)
+                        backup_all=true
+                        ;;
+                    s)
+                        skip=true
+                        ;;
+                    S)
+                        skip_all=true
+                        ;;
+                    *)
+                        ;;
+                esac
+            fi
+
+            if [ "$overwrite" == "true" ] || [ "$overwrite_all" == "true" ]; then
+                rm -rf "$dest"
+                ok "removed $dest"
+            fi
+
+            if [ "$backup" == "true" ] || [ "$backup_all" == "true" ]; then
+                mv "$dest" "${dest}.bak"
+                ok "moved $dest to ${dest}.bak"
+            fi
+
+            if [ "$skip" == "false" ] && [ "$skip_all" == "false" ]; then
+                symlink "$src" "$dest"
+            else
+                ok "skipped $src"
+            fi
+        else
+            symlink "$src" "$dest"
+        fi
+    done
+}
+
+install_dotfiles
