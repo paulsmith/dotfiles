@@ -1,0 +1,13 @@
+                           ~ Paul Smith's dotfiles ~
+
+There are many like them, but these are mine.
+
+$ ls -a 
+.bash_profile
+.bashrc
+.emacs
+.gitconfig
+.gitignore
+.screenrc
+.vimrc
+bootstrap
