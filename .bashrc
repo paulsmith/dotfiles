@@ -4,7 +4,7 @@ alias backup="sudo rsync -vaxE --delete --ignore-errors"
 export EDITOR=vim
 export GOROOT=$HOME/src/go
 export GOPATH=$HOME/go
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin:/usr/local/mysql/bin:/usr/local/Cellar/todo-txt/2.9/bin:$GOROOT/bin:$GOPATH/bin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:/usr/local/share/npm/bin:/usr/local/mysql/bin:/usr/local/Cellar/todo-txt/2.9/bin:$GOROOT/bin:$GOPATH/bin:$HOME/adt-bundle-mac-x86_64-20130219/sdk/platform-tools
 alias screen='TERM=screen screen'
 alias virtualenv='virtualenv --no-site-packages'
 alias ffmpeg=/Applications/ffmpegX.app/Contents/Resources/ffmpeg
