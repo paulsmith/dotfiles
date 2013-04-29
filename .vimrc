@@ -107,7 +107,12 @@ nnoremap <leader>a :Ack
 " Save a file as root
 nnoremap <leader>wr :w ! sudo tee % > /dev/null<CR>
 
-autocmd BufRead ~/Dropbox/mozilla/openbadger/*.js setlocal sw=2 ts=2
+" Run the make command
+nnoremap <leader>m :make<CR>
+
+" Reformat paragraphs (wrap long lines)
+nnoremap <leader>fm vip:!fmt -w 78<CR>
+vnoremap <leader>fm :!fmt -w 78<CR>
 
 " Searches Dash for the word under your cursor in vim, using the keyword
 " operator, based on file type. E.g. for JavaScript files, I have it
@@ -122,3 +127,10 @@ function! SearchDash()
     redraw!
 endfunction
 map <leader>d :call SearchDash()<CR>
+
+" Edit and source ~/.vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+iabbrev @@ paulsmith@pobox.com
+iabbrev tw @paulsmith
