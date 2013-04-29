@@ -134,3 +134,13 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 
 iabbrev @@ paulsmith@pobox.com
 iabbrev tw @paulsmith
+
+function! AppendGoPackage()
+    call inputsave()
+    let s:pkg = input("Go package: ")
+    call inputrestore()
+    let s:cmd = "normal! ma?^import (\<CR>%O\t\"" . s:pkg . "\"\<ESC>`a"
+    execute s:cmd
+endfunction
+
+nnoremap <leader>ai :call AppendGoPackage()<CR>
