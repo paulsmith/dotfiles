@@ -8,10 +8,13 @@
 	interactive = auto
 	ui = auto
 [alias]
-	st = status
+	st = status -sb
 	ci = commit
 	co = checkout
     br = branch
     pl = pull --rebase
+    graph = log --color --decorate --graph --oneline
 [pager]
 	status = true
+[push]
+	default = simple
