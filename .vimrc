@@ -26,7 +26,7 @@ set scrolloff=3
 set ruler
 set hidden
 set wildmenu
-set wildmode=list:longest
+set wildmode=list:full
 set title
 set visualbell
 set relativenumber
