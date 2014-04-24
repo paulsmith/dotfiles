@@ -1,20 +1,20 @@
 [user]
-	name = Paul Smith
-	email = paulsmith@pobox.com
+    name = Paul Smith
+    email = paulsmith@pobox.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = auto
 [alias]
-	st = status -sb
-	ci = commit
-	co = checkout
+    st = status -sb
+    ci = commit
+    co = checkout
     br = branch
     pl = pull --rebase
     graph = log --color --decorate --graph --oneline
 [pager]
-	status = true
+    status = true
 [push]
-	default = simple
+    default = simple
