@@ -1,4 +1,5 @@
 filetype off
+filetype plugin indent off
 call pathogen#infect()
 filetype plugin indent on
 set nocp
