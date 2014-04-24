@@ -8,7 +8,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set smarttab
-set noexpandtab
+set expandtab
 
 set wrap
 set textwidth=80
@@ -102,7 +102,8 @@ nnoremap <leader>w <C-W>s<C-W>k
 " Open a new buffer in a new split window
 nnoremap <leader>N <C-W>s<C-W>k:enew<CR>i
 
-nnoremap <leader>a :Ack
+" The Silver Searcher: https://github.com/rking/ag.vim
+nnoremap <leader>a :Ag
 
 " Save a file as root
 nnoremap <leader>wr :w ! sudo tee % > /dev/null<CR>
@@ -114,33 +115,11 @@ nnoremap <leader>m :make<CR>
 nnoremap <leader>fm vip:!fmt -w 78<CR>
 vnoremap <leader>fm :!fmt -w 78<CR>
 
-" Searches Dash for the word under your cursor in vim, using the keyword
-" operator, based on file type. E.g. for JavaScript files, I have it
-" configured to search j:term, which immediately brings up the JS doc
-" for that keyword. Might need some customisation for your own keywords!
-function! SearchDash()
-    let s:browser = "/usr/bin/open"
-    let s:wordUnderCursor = expand("<cword>")
-    let s:url = "dash://". &filetype . ":" . s:wordUnderCursor
-    let s:cmd ="silent ! " . s:browser . " " . s:url
-    execute s:cmd
-    redraw!
-endfunction
-map <leader>d :call SearchDash()<CR>
-
 " Edit and source ~/.vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-iabbrev @@ paulsmith@pobox.com
-iabbrev tw @paulsmith
-
-function! AppendGoPackage()
-    call inputsave()
-    let s:pkg = input("Go package: ")
-    call inputrestore()
-    let s:cmd = "normal! ma?^import (\<CR>%O\t\"" . s:pkg . "\"\<ESC>`a"
-    execute s:cmd
-endfunction
-
-nnoremap <leader>ai :call AppendGoPackage()<CR>
+if has("autocmd")
+    " Ensure tabs in Makefiles.
+    autocmd FileType make setlocal noexpandtab
+endif
