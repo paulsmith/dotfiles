@@ -2,12 +2,21 @@
 ui = ttyui
 accounts = gmail
 pythonfile = ~/.mutt/offlineimap.py
+fsync = false
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+paulsmith-gmail.com/%(foldername)s"
+sep = " "
+footer = "\n"
 
 [Account gmail]
 localrepository = paulsmith-local
 remoterepository = paulsmith-remote
 #status_backend = sqlite
-#postsynchook = notmuch new
+postsynchook = notmuch new
 maxage = 100
 
 [Repository paulsmith-local]
@@ -15,9 +24,8 @@ type = Maildir
 localfolders = ~/mail/paulsmith-gmail.com
 nametrans = lambda folder: {'drafts':   '[Gmail]/Drafts',
                             'sent':     '[Gmail]/Sent Mail',
-                            #'trash':    '[Gmail]/Trash',
+                            'trash':    '[Gmail]/Trash',
                             #'spam':     '[Gmail]/Spam',
-                            'INBOX':     'INBOX',
                             'archive':  '[Gmail]/All Mail'}.get(folder, folder)
 
 [Repository paulsmith-remote]
@@ -28,14 +36,13 @@ realdelete = no
 maxconnections = 3
 nametrans = lambda folder: {'[Gmail]/Drafts':       'drafts',
                             '[Gmail]/Sent Mail':    'sent',
-                            #'[Gmail]/Trash':        'trash',
+                            '[Gmail]/Trash':        'trash',
                             #'[Gmail]/Spam':         'spam',
-                            'INBOX':                'INBOX',
                             '[Gmail]/All Mail':     'archive'}.get(folder, folder)
 folderfilter = lambda folder: folder in ['[Gmail]/All Mail',
                                          '[Gmail]/Sent Mail',
                                          'INBOX',
-                                         #'[Gmail]/Trash',
+                                         '[Gmail]/Trash',
                                          #'[Gmail]/Spam',
                                          '[Gmail]/Drafts']
 cert_fingerprint = 89091347184d41768bfc0da9fad94bfe882dd358

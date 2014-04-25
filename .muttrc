@@ -4,14 +4,16 @@ set folder = ~/mail
 #set imap_user = paulsmith@gmail.com
 #set imap_pass = `security find-internet-password -g -a paulsmith@gmail.com -s imap.gmail.com 2>&1 >/dev/null | grep "^password: " | cut -d"\"" -f 2`
 #set spoolfile = +INBOX
-#set spoolfile = +paulsmith-gmail.com/INBOX
-set spoolfile = +paulsmith-gmail.com/archive
+set spoolfile = +paulsmith-gmail.com/INBOX
+source ~/.mutt/mailboxes
+#set spoolfile = +paulsmith-gmail.com/archive
 #set imap_check_subscribed
 #mailboxes = +paulsmith-gmail.com/INBOX \
 #            +paulsmith-gmail.com/archive \
 #            +paulsmith-gmail.com/sent \
 #            +paulsmith-gmail.com/drafts
 set mbox = +paulsmith-gmail.com/archive
+#set trash = +paulsmith-gmail.com/trash
 
 #set header_cache="~/.mutt/cache/headers"
 #set message_cachedir="~/.mutt/cache/bodies"
@@ -57,6 +59,7 @@ set reverse_name # Reply as whomever it was to.
 set include # Include message in replies.
 set forward_quote # Include message in forwards.
 my_hdr X-Ham-Radio: KA3PRP
+set text_flowed = yes # Generate text/plain; format=flowed attachments.
 
 set sort = threads
 set sort_aux = reverse-last-date-received
@@ -64,18 +67,25 @@ set pager_index_lines = 10
 set pager_context = 3
 set pager_stop
 
+# Contacts
+set query_command = "goobook query '%s'"
+macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
+bind editor <Tab> complete-query
+
 ignore *
 unignore from subject to cc date x-mailer x-url user-agent
 unhdr_order *
 hdr_order from to cc date subject x-mailer user-agent
 
-alternates paulsmith@pobox.com paul@adhocteam.us paul@hcgov.us
+alternates paulsmith@pobox.com paul@adhocteam.us paul@hcgov.us \
+           paul@gerrymanderpresents.com
 
 bind editor <space> noop
-bind index G imap-fetch-mail
-macro index,pager y "<save-message>=[Gmail]/All Mail<enter>" "move message to archive"
-macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "go to archive"
-macro index gi "<change-folder>=INBOX<enter>" "go to inbox"
+#bind index G imap-fetch-mail
+#macro index,pager y "<save-message>=[Gmail]/All Mail<enter>" "move message to archive"
+#macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "go to archive"
+macro index ga "<change-folder>+paulsmith-gmail.com/archive<enter>" "go to archive"
+macro index gi "<change-folder>+paulsmith-gmail.com/INBOX<enter>" "go to inbox"
 
 color error brightred white
 color indicator white yellow
