@@ -123,4 +123,9 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 if has("autocmd")
     " Ensure tabs in Makefiles.
     autocmd FileType make setlocal noexpandtab
+    " Support Format-Flowed in email (mutt).
+    autocmd FileType mail setlocal fo+=aw
+    " Fix up imports in Go.
+    autocmd FileType go let g:gofmt_command = "goimports"
+    autocmd BufWritePre <buffer> Fmt
 endif
