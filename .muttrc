@@ -48,7 +48,7 @@ set sendmail = "msmtp -a paulsmith"
 unset record # Gmail saves a copy in Sent Mail.
 set fast_reply # Skip to compose when replying.
 set edit_hdrs
-set editor = "vim"
+set editor = "vim \"+set spell\""
 set fcc_attach # Save attachments with the body.
 unset mime_forward # Forward attachments as part of the body.
 set askcc
@@ -86,6 +86,8 @@ bind editor <space> noop
 #macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "go to archive"
 macro index ga "<change-folder>+paulsmith-gmail.com/archive<enter>" "go to archive"
 macro index gi "<change-folder>+paulsmith-gmail.com/INBOX<enter>" "go to inbox"
+macro index / "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
+    "search index (using notmuch)"
 
 color error brightred white
 color indicator white yellow

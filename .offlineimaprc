@@ -17,7 +17,7 @@ localrepository = paulsmith-local
 remoterepository = paulsmith-remote
 #status_backend = sqlite
 postsynchook = notmuch new
-maxage = 100
+maxage = 300
 
 [Repository paulsmith-local]
 type = Maildir
@@ -33,7 +33,7 @@ type = Gmail
 remoteuser = paulsmith@gmail.com
 remotepasseval = get_keychain_pass(account='paulsmith@gmail.com', server='imap.gmail.com')
 realdelete = no
-maxconnections = 3
+maxconnections = 1
 nametrans = lambda folder: {'[Gmail]/Drafts':       'drafts',
                             '[Gmail]/Sent Mail':    'sent',
                             '[Gmail]/Trash':        'trash',
