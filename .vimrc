@@ -92,6 +92,7 @@ nmap k gk
 nnoremap <leader>ft Vatzf
 
 " Strip trailing whitespace
+match Error /\s\+$/
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " Re-wrap paragraphs
@@ -120,12 +121,26 @@ vnoremap <leader>fm :!fmt -w 78<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
+" Add golint (:Lint).
+set rtp+=/Users/paul/gocode/src/github.com/golang/lint/misc/vim
+
 if has("autocmd")
     " Ensure tabs in Makefiles.
     autocmd FileType make setlocal noexpandtab
     " Support Format-Flowed in email (mutt).
-    autocmd FileType mail setlocal fo+=aw
+    autocmd FileType mail setlocal fo+=aw tw=72
     " Fix up imports in Go.
     autocmd FileType go let g:gofmt_command = "goimports"
-    autocmd BufWritePre <buffer> Fmt
+    autocmd FileType go au BufWritePre <buffer> Fmt
+    " Run golint on :w.
+    autocmd BufWritePost,FileWritePost *.go execute ':Lint' | cwindow
 endif
+
+" Read in full licenses
+nnoremap <leader>la :r ~/licenses/apache<CR>
+nnoremap <leader>lg :r ~/licenses/gplv2<CR>
+nnoremap <leader>lm :r ~/licenses/mit<CR>
+" License snippets for fast insertion into source code.
+nnoremap <leader>lba :r !sed -n '189,$p' ~/licenses/apache<CR>
+nnoremap <leader>lbg :r !sed -n '293,308p' ~/licenses/gplv2<CR>
+nnoremap <leader>lbm :r ~/licenses/mit<CR>
