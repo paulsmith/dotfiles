@@ -1,0 +1,9 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Paul Smith
+	email = paulsmith@gmail.com
+[alias]
+	co = checkout
+	st = status
+	ci = commit
+	br = branch

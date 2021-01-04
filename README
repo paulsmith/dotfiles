@@ -2,11 +2,8 @@
 
 There are many like them, but these are mine.
 
-$ ls -a 
-.bash_profile
-.bashrc
-.emacs
-.gitconfig
-.gitignore
-.screenrc
-.vimrc
+Use GNU Stow. Install it, then run `stow home` from this directory.
+
+Try to keep the files in here as platform-neutral as possible. Systems include,
+macOS, OpenBSD, Linux (Debian, WSL2, NixOS).
+
