@@ -22,6 +22,7 @@ set hidden
 set ruler
 set laststatus=2 " always show status line, not just >1 window
 set foldlevelstart=0 " all folds closed
+set signcolumn=yes
 syntax enable
 " }}}
 " undo, swap, and backups {{{
@@ -46,9 +47,9 @@ set list
 set listchars=tab:>-,trail:.,extends:>,precedes:<
 set colorcolumn=80
 nnoremap <leader><space> :nohl<cr>
-highlight ColorColumn ctermbg=DarkGray
-highlight SpecialKey ctermfg=DarkGray
-highlight LineNr ctermfg=DarkGray
+highlight ColorColumn ctermbg=237
+highlight SpecialKey ctermfg=234
+highlight LineNr ctermfg=234
 highlight Search ctermfg=grey ctermbg=blue
 filetype plugin indent on
 " }}}
@@ -84,7 +85,7 @@ augroup ps_python
 	autocmd FileType python vnoremap <buffer> <localleader>c <esc>`<<c-v>`>0I# <esc>
 augroup end
 " }}}
-" settigs for zig {{{
+" settings for zig {{{
 augroup ps_zig
 	autocmd!
 	autocmd FileType zig nnoremap <buffer> <localleader>c I// <esc>
