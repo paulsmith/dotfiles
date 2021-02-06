@@ -83,6 +83,10 @@ augroup ps_python
 	autocmd!
 	autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
 	autocmd FileType python vnoremap <buffer> <localleader>c <esc>`<<c-v>`>0I# <esc>
+	if exists(":Black")
+		autocmd BufWritePre *.py execute ':Black'
+		nnoremap <F9> :Black<cr>
+	endif
 augroup end
 " }}}
 " settings for zig {{{
