@@ -35,3 +35,11 @@ if command -v direnv &> /dev/null; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if [ -d ~/.pyenv/bin ]; then
+	export PATH="$HOME/.pyenv/bin:$PATH"
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi
+
+[ -d $HOME/.deno ] && export DENO_INSTALL=$HOME/.deno

@@ -20,6 +20,7 @@ setup_paths() {
         "$HOME/go/bin"
         "$HOME/local/bin"
         "$HOME/local/zig"
+        "$HOME/.deno/bin"
     )
 
     for path in "${paths[@]}"; do
