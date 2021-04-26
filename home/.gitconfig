@@ -7,3 +7,5 @@
 	st = status
 	ci = commit
 	br = branch
+[init]
+	defaultBranch = main
