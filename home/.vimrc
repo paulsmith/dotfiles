@@ -23,6 +23,7 @@ set ruler
 set laststatus=2 " always show status line, not just >1 window
 set foldlevelstart=0 " all folds closed
 set signcolumn=yes
+set visualbell
 syntax enable
 " }}}
 " undo, swap, and backups {{{
@@ -119,3 +120,5 @@ augroup ps_vimscript
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
 " }}}
+" formatting helpers
+nnoremap <leader>q gqip
