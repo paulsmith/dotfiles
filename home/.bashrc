@@ -28,7 +28,7 @@ case "$OSTYPE" in
 esac
 alias ll="ls -l"
 
-export EDITOR=/usr/bin/nano
+export EDITOR=vim
 
 if command -v direnv &> /dev/null; then
 	eval "$(direnv hook bash)"
