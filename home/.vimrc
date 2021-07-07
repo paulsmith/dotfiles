@@ -95,6 +95,12 @@ augroup ps_zig
 	autocmd FileType zig vnoremap <buffer> <localleader>c <esc>`<<c-v>`>0I// <esc>
 augroup end
 " }}}
+" settings for rust {{{
+augroup ps_rust
+	autocmd!
+	autocmd! FileType rust let g:rustfmt_autosave = 1
+augroup end
+" }}}
 " FZF integrations {{{
 if has('osx') && isdirectory('/opt/homebrew/opt/fzf')
 	set rtp+=/opt/homebrew/opt/fzf
@@ -122,3 +128,11 @@ augroup ps_vimscript
 " }}}
 " formatting helpers
 nnoremap <leader>q gqip
+" Language Server Protocol settings
+" As of April 26, 2021, I'm using coc.nvim primarily as the LSP support for
+" vim (as opposed to LanguageClient-neovim or ALE, eventually, once neovim 0.5
+" comes out, that has native LSP support).
+" netrw - builtin file/directory browser {{{
+let g:netrw_liststyle = 3 " tree view
+let g:netrw_banner = 0
+" }}}
